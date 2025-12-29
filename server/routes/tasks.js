@@ -52,6 +52,8 @@ router.get("/bootstrap", async (req, res) => {
 router.post("/", requireAuth, async (req, res) => {
   try {
     const data = createTaskSchema.parse(req.body);
+const member = await isOrgMember(data.orgId, req.user.userId);
+if (!member) return res.status(403).json({ error: "Not a member of this organization" });
 
     const result = await pool.query(
       `INSERT INTO tasks (org_id, created_by, assigned_to, title, description, due_date)
