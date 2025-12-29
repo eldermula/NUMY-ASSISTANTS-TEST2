@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 const { z } = require("zod");
 const { pool } = require("../config/db");
 
+app.use("/api/orgs", orgRoutes);
+
 const router = express.Router();
 
 const registerSchema = z.object({
