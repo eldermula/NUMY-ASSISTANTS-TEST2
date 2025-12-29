@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const taskRoutes = require("./routes/tasks");
 
 const authRoutes = require("./routes/auth");
 const orgRoutes = require("./routes/orgs");
@@ -16,6 +17,8 @@ app.get("/", (req, res) => {
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/orgs", orgRoutes);
+app.use("/api/tasks", taskRoutes);
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
