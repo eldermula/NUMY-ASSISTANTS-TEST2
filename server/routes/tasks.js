@@ -81,6 +81,8 @@ if (!member) return res.status(403).json({ error: "Not a member of this organiza
 router.get("/", requireAuth, async (req, res) => {
   const orgId = Number(req.query.orgId);
   if (!orgId) return res.status(400).json({ error: "orgId query param required" });
+const member = await isOrgMember(orgId, req.user.userId);
+if (!member) return res.status(403).json({ error: "Not a member of this organization" });
 
   const result = await pool.query(
     `SELECT * FROM tasks
