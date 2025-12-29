@@ -1,10 +1,9 @@
 require("dotenv").config();
-const orgRoutes = require("./routes/orgs");
-
 const express = require("express");
 const cors = require("cors");
 
 const authRoutes = require("./routes/auth");
+const orgRoutes = require("./routes/orgs");
 
 const app = express();
 app.use(cors());
@@ -14,7 +13,11 @@ app.get("/", (req, res) => {
   res.json({ ok: true, service: "NA Systems API" });
 });
 
+// Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/orgs", orgRoutes);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`NA Systems running on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`NA Systems running on port ${PORT}`);
+});
