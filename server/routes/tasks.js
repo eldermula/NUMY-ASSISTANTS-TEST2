@@ -109,6 +109,8 @@ router.patch("/:id", requireAuth, async (req, res) => {
     if (existing.rowCount === 0) return res.status(404).json({ error: "Task not found" });
 
     const current = existing.rows[0];
+const member = await isOrgMember(current.org_id, req.user.userId);
+if (!member) return res.status(403).json({ error: "Not a member of this organization" });
 
     const nextTitle = patch.title ?? current.title;
     const nextDescription = patch.description ?? current.description;
