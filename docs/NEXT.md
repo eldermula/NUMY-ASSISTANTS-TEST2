@@ -31,3 +31,7 @@
   - docs/design/owner-interface.md
 - Updated language spec:
   - docs/specs/NA-Maintenance-Language-v1.md
+## Decisions to lock early
+- Org context: use URL scoping (/api/v1/orgs/:orgId/...)
+- Roles: Owner / Admin / Member / Viewer
+- Assistant UX: every action logged; destructive actions require confirmation
